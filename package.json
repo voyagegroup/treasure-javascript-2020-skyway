@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "build": "webpack"
   },
   "repository": "https://github.com/Shinyaigeek/treasure-javascript-2020-skyway.git",
   "author": "<PhilisPaxil@gmail.com>",
