@@ -1,5 +1,5 @@
 (async function(){
-    console.log("hello treasure"); 
+
     let localStream;
 
     try{
@@ -11,7 +11,6 @@
     catch(error){
         alert(error)
     }
-
     // peer id　の取得
     const peer = new Peer({
         key: 'f4314d6c-ad3c-450c-90df-2811611d4a25',
@@ -30,6 +29,7 @@
         setEventListener(mediaConnection);
     };
 
+
     const setEventListener = mediaConnection => {
         mediaConnection.on('stream', stream => {
           // video要素にカメラ映像をセットして再生
@@ -37,7 +37,7 @@
           videoElm.srcObject = stream;
           videoElm.play();
         });
-      }
+        }
 
 
     peer.on('call', mediaConnection => {
@@ -45,8 +45,10 @@
         setEventListener(mediaConnection);
     });
 
+
+    peer.on('error', console.error);
     peer.on('close', () => {
-        alert('通信が切断しました。');
-      });
+        alert("hogehoge")
+    });
 
 })();
