@@ -3,7 +3,7 @@ const micAudio = new Tone.UserMedia();
 micAudio.open();
 
 // testボタン押下のイベントリスナ
-document.getElementById('test').addEventListener('click', () => {
+document.getElementById('voice_change').addEventListener('click', () => {
   // ピッチシフター（音程を変更するエフェクタ）を用意。音の高さは5。
   const shifter = new Tone.PitchShift(5);
   // マスターオーディオ（スピーカー）に接続された、リバーブ（残響効果エフェクタ）を用意。
