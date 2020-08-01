@@ -2,8 +2,7 @@ import React from 'react'
 import { useState, useRef } from 'react'
 import Peer from 'skyway-js'
 const peer = new Peer({ key: process.env.REACT_APP_SKYWAY_KEY })
-const App = React.memo(
-  () =>{
+const App = () => {
 
     console.log('start App');
     const [myId, setMyId] = useState('')
@@ -54,7 +53,6 @@ const App = React.memo(
         <div><video width="400px" autoPlay muted playsInline ref={remoteVideo}></video></div>
       </div>
     )
-  }, []
-);
+}
 
 export default App
