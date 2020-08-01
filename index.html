@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Treasure Frontend 2020 Skyway</title>
-  <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Treasure Frontend 2020 Skyway</title>
+    <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  </head>
+  <body>
     <h1>Hello Treasure!!!</h1>
+    <video id="my-video" width="400px" autoplay muted playsinline></video>
+    <p id="my-id"></p>
+    <textarea id="their-id"></textarea>
+    <button id="make-call">発信</button>
+    <video id="their-video" width="400px" autoplay muted playsinline></video>
     <script src="./index.js"></script>
-</body>
+  </body>
 </html>
