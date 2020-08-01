@@ -27,7 +27,7 @@
 
     const setEventLister = mediaConnection => {
         mediaConnection.on('stream', stream => {
-            const videoElement = document.getElementById('their-video')
+            const videoElement = document.getElementById('their-video');
             videoElement.srcObject = stream;
             videoElement.play();
         })
