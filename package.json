@@ -1,0 +1,23 @@
+{
+  "name": "treasure-javascript-2020-skyway",
+  "version": "1.0.0",
+  "description": "```sh $ open index.html ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/switchGH/treasure-javascript-2020-skyway.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/switchGH/treasure-javascript-2020-skyway/issues"
+  },
+  "homepage": "https://github.com/switchGH/treasure-javascript-2020-skyway#readme",
+  "dependencies": {
+    "tone": "^14.7.39"
+  }
+}
