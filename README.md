@@ -1,3 +1,0 @@
-```sh
-$ open index.html
-```
