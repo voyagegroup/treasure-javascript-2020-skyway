@@ -1,3 +1,3 @@
 ```sh
-$ open index.html
+open index.html
 ```

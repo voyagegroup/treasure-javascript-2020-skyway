@@ -1,3 +1,3 @@
-(function(){
-    console.log("hello treasure");
+(function () {
+  console.log("hello treasure");
 })();
