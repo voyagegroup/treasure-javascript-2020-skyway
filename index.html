@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -7,7 +7,58 @@
   <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
 </head>
 <body>
-    <h1>Hello Treasure!!!</h1>
-    <script src="./index.js"></script>
+  <h1>Hello Treasure!!!</h1>
+  <video id="my-video" width="400px" autoplay muted playsinline></video>
+  <p id="my-id"></p>
+  <textarea id="their-id"></textarea>
+  <button id="make-call">発信</button>
+  <video id="their-video" width="400px" autoplay muted playsinline></video>
+  <script src="./index.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkyWay - Room example</title>
+  <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <script src="/index.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1 class="heading">Room example</h1>
+    <p class="note">
+        Change Room mode (before join in a room):
+        <a href="#">mesh</a> / <a href="#sfu">sfu</a>
+      </p>
+    <div class="room">
+      <div>
+        <video id="js-local-stream"></video>
+        <span id="js-room-mode"></span>:
+        <input type="text" placeholder="Room Name" id="js-room-id">
+        <button id="js-join-trigger">Join</button>
+        <button id="js-leave-trigger">Leave</button>
+      </div>
+
+      <div class="remote-streams" id="js-remote-streams"></div>
+
+      <div>
+        <pre class="messages" id="js-messages"></pre>
+        <input type="text" id="js-local-name">
+        <input type="text" id="js-local-text">
+        <button id="js-send-trigger">Send</button>
+      </div>
+    </div>
+    <p class="meta" id="js-meta"></p>
+  </div>
+<<<<<<< HEAD
+  <script src="//cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <!-- <script src="/index.js"></script>
+  <script src="./script.js"></script> -->
+=======
+  <script src="./index.js"></script>
+>>>>>>> f62b52b8b07ef7e660ff994be40c4806de12228b
 </body>
 </html>
