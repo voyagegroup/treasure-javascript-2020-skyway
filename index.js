@@ -2,7 +2,7 @@
     console.log("hello treasure");
     let localStream;
     try {
-        const localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
         const videoElement = document.getElementById('my-video');
         videoElement.srcObject = localStream;
         videoElement.play();
