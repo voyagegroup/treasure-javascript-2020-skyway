@@ -49,6 +49,7 @@ const Peer = window.Peer;
     const remoteVideos = document.getElementById('js-remote-streams');
     const roomId = document.getElementById('js-room-id');
     const roomMode = document.getElementById('js-room-mode');
+    const localName = document.getElementById('js-local-name');
     const localText = document.getElementById('js-local-text');
     const sendTrigger = document.getElementById('js-send-trigger');
     const messages = document.getElementById('js-messages');
@@ -153,7 +154,7 @@ const Peer = window.Peer;
             // Send message to all of the peers in the room via websocket
             room.send(localText.value);
 
-            messages.textContent += `${peer.id}: ${localText.value}\n`;
+            messages.textContent += `${localName.value}: ${localText.value}\n`;
             localText.value = '';
         }
     });
