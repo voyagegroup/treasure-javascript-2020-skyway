@@ -1,6 +1,9 @@
-let localStream;
 (async function(){
     console.log("hello treasure");
+    let localStream;
+    const localText = document.getElementById('js-local-text');
+    const messages = document.getElementById('js-messages');
+    const sendTrigger = document.getElementById('js-send-trigger');
     try {
         localStream = await navigator.mediaDevices.getUserMedia({video: true, audio: true});
         const videoElement = document.getElementById('my-video');
@@ -22,7 +25,24 @@ let localStream;
     document.getElementById('make-call').onclick = () => {
         const theirID = document.getElementById('their-id').value;
         const mediaConnection = peer.call(theirID, localStream);
+        const dataConnection = peer.connect(theirID);
         setEventListener(mediaConnection);
+
+        dataConnection.once('open', async () => {
+            messages.textContent += `=== DataConnection has been opened === \n`;
+            sendTrigger.addEventListener('click', onClickSend);
+        });
+
+        dataConnection.on('data', data => {
+            messages.textContent += `Remote: ${data}\n`;
+        });
+
+        function onClickSend() {
+            const data = localText.value;
+            dataConnection.send(data);
+            messages.textContent += `You: ${data}\n`;
+            localText.value = '';
+        }
     };
 
     const setEventListener = mediaConnection => {
@@ -37,5 +57,24 @@ let localStream;
         mediaConnection.answer(localStream);
         setEventListener(mediaConnection);
     });
+
+    peer.on('connection', dataConnection => {
+        dataConnection.once('open', async() => {
+            messages.textContent += `===DataConnection has been opened ===\n`;
+            sendTrigger.addEventListener('click', onClickSend);
+        });
+
+        dataConnection.on('data', data => {
+            messages.textContent += `Remote: ${data}\n`;
+        });
+
+        function onClickSend() {
+            const data = localText.value;
+            dataConnection.send(data);
+
+            messages.textContent += `You: ${data}\n`;
+            localText.value = '';
+        }
+    })
 
 })();
