@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Treasure Frontend 2020 Skyway</title>
   <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <script src="http://chamu.org/tonejs/Tone.min.js"></script>
 </head>
 <body>
     <h1>Hello Treasure!!!</h1>
@@ -12,10 +13,26 @@
     <video id="my-video" width="400px" autoplay playsinline></video>
     <textarea id="their-id"></textarea>
     <button id="make-call">発信</button>
-    <button id="voice_change">test</button>
+    <button id="voice_change">Voice Chnage</button>
 <video id="their-video" width="400px" autoplay playsinline></video>
     <video id="their-video" width="400px" autoplay playsinline></video>
     <script src="./index.js"></script>
-    <script src='./tone.js'></script>
+    <!-- <script src='./tone.js'></script> -->
+    <script>
+      const micAudio = new Tone.UserMedia();
+        micAudio.open();
+
+        // testボタン押下のイベントリスナ
+        document.getElementById('voice_change').addEventListener('click', () => {
+          // ピッチシフター（音程を変更するエフェクタ）を用意。音の高さは5。
+          const shifter = new Tone.PitchShift(10);
+          // マスターオーディオ（スピーカー）に接続された、リバーブ（残響効果エフェクタ）を用意。
+          const reverb = new Tone.Freeverb().toMaster();
+          // マイク音声をピッチシフターに接続
+          micAudio.connect(shifter);
+          // ピッチシフターをリバーブに接続
+          shifter.connect(reverb);
+        });
+    </script>
 </body>
 </html>
