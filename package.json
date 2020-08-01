@@ -1,0 +1,26 @@
+{
+  "name": "treasure-javascript-2020-skyway",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "webpack --config webpack.config.js --mode production",
+    "format": "prettier --write src/**/*.{css,js,jsx,ts,tsx}",
+    "start": "webpack-dev-server --hot --open"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "skyway-js": "^3.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/polyfill": "^7.10.4",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "html-webpack-plugin": "^4.2.0",
+    "prettier": "^2.0.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
