@@ -1,6 +1,6 @@
 export const useUserMedia = () => {
   return navigator.mediaDevices
-    .getUserMedia({ video: true, audio: true })
+    .getUserMedia({ video: true, audio: false })
     .then((stream) => {
         return stream;
     })
