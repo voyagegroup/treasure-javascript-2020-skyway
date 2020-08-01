@@ -10,7 +10,7 @@
     alert(error);
   }
   const peer = new Peer({
-    key: "a03deb72-2a82-459d-b1f8-76f6a6f1c9a2",
+    key: "1212399c-448f-4135-89d3-76deff99795a",
     debug: 3,
   });
   // PeerID取得
