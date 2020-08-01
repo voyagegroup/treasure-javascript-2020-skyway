@@ -14,8 +14,8 @@ jobs:
           submodules: true  # Fetch Hugo themes
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      - name: Setup Hugo
-        run: yarn install
+      - name: Setup npm
+        run: yarn install --frozen-lockfile
 
       - name: Build
         run: yarn run build
