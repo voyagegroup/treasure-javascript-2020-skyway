@@ -13,6 +13,26 @@
     <textarea id="their-id"></textarea>
     <button id="make-call">発信</button>
     <video id="their-video" width="400px" autoplay muted playsinline></video>
+
+    <!-- chat -->
+    <p class="note">
+      Enter remote peer ID to connect.
+    </p>
+    <div class="p2p-data">
+      <div>
+        <p>Your ID: <span id="js-local-id"></span></p>
+        <input type="text" placeholder="Remote Peer ID" id="js-remote-id" />
+        <button id="js-connect-trigger">Connect</button>
+        <button id="js-close-trigger">Close</button>
+      </div>
+      <div>
+        <pre class="messages" id="js-messages"></pre>
+        <input type="text" id="js-local-text" />
+        <button id="js-send-trigger">Send</button>
+      </div>
+    </div>
+    <p class="meta" id="js-meta"></p>
+
     <script src="./index.js"></script>
   </body>
 </html>
