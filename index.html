@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Treasure Frontend 2020 Skyway</title>
-    <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
-  </head>
-  <body>
-    <h1>Hello Treasure!!!</h1>
-    <video id="my-video" width="400px" autoplay muted playsinline></video>
-    <p id="my-id"></p>
-    <textarea id="their-id"></textarea>
-    <button id="make-call">発信</button>
-    <video id="their-video" width="400px" autoplay muted playsinline></video>
 
-    <!-- chat -->
-    <p class="note">
-      Enter remote peer ID to connect.
-    </p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Treasure Frontend 2020 Skyway</title>
+  <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+</head>
+
+<body>
+  <h1>Video Chat</h1>
+  <section>
+    <h2>Video</h2>
+    <video id="my-video" width="400px" autoplay muted playsinline></video>
+    <p>Your ID: <span id="js-local-id"></span></p>
+    <input type="text" id="their-id" placeholder="相手のID"></input>
+    <button id="js-connect-trigger">接続</button>
+    <button id="js-disconnect-trigger">切断</button>
+    <!-- <button id="js-permit-trigger">許可</button> -->
+    <!-- <button id="js-reject-trigger">拒否</button> -->
+    <video id="their-video" width="400px" autoplay muted playsinline></video>
+  </section>
+  <!-- chat -->
+  <section>
+    <h2>
+      Chat
+    </h2>
     <div class="p2p-data">
-      <div>
-        <p>Your ID: <span id="js-local-id"></span></p>
-        <input type="text" placeholder="Remote Peer ID" id="js-remote-id" />
-        <button id="js-connect-trigger">Connect</button>
-        <button id="js-close-trigger">Close</button>
-      </div>
       <div>
         <pre class="messages" id="js-messages"></pre>
         <input type="text" id="js-local-text" />
         <button id="js-send-trigger">Send</button>
       </div>
     </div>
-    <p class="meta" id="js-meta"></p>
+  </section>
+  <script src="./index.js"></script>
+</body>
 
-    <script src="./index.js"></script>
-  </body>
 </html>
