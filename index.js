@@ -33,12 +33,10 @@
   myVideo.srcObject = localStream;
   myVideo.play();
 
-  // 画面共有
+  // displayStream: 画面共有
   const displayStream = await navigator.mediaDevices
     .getDisplayMedia({ video: true })
     .catch((err) => alert("mediaDevice.getDisplayMedia() error:", err));
-  myDisplay.srcObject = displayStream;
-  myDisplay.play();
 
   cameraTrigger.addEventListener("click", () => {
     localStream.getVideoTracks()[0].enabled = !localStream.getVideoTracks()[0].enabled;
@@ -60,13 +58,10 @@
 
   // 相手から接続要求がきた時
   peer.on("call", async (mediaConnection) => {
-    if (confirm("相手が見つかりました！\n接続しますか？")) {
-      // default: audio muted
-      localStream.getAudioTracks()[0].enabled = false;
-      mediaConnection.answer(localStream);
-      setEventListener(mediaConnection);
-    }
-    console.log(localStream.enabled);
+    // default: audio muted
+    localStream.getAudioTracks()[0].enabled = false;
+    mediaConnection.answer(localStream);
+    setEventListener(mediaConnection);
 
     // permit
     // permitTrigger.onclick = () => {
