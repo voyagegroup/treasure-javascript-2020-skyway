@@ -1,0 +1,39 @@
+{
+  "name": "treasure-javascript-2020-skyway",
+  "version": "1.0.0",
+  "main": "index.tsx",
+  "repository": "https://github.com/hirokikondo86/treasure-javascript-2020-skyway.git",
+  "author": "hirokikondo86 <kondo.h.0806@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "deploy": "gh-pages -d docs"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/register": "^7.8.6",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.2",
+    "file-loader": "^5.1.0",
+    "gh-pages": "^3.1.0",
+    "hard-source-webpack-plugin": "^0.13.1",
+    "html-loader": "^1.0.0",
+    "html-webpack-plugin": "^3.0.7",
+    "prettier": "^1.19.1",
+    "skyway-js": "^3.0.2",
+    "style-loader": "^1.1.3",
+    "styled-components": "^5.1.0",
+    "terser-webpack-plugin": "^2.3.5",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
+    "webpack-merge": "^4.2.2"
+  }
+}
