@@ -14,20 +14,19 @@ const VideoCall = () => {
 
   /* 初期接続時 */
   peer.on('open', () => {
-    console.log('start peer.on');
     setMyId(peer.id)
+    // useEffectを使うべきかもしれない
     if (localVideo.current !== null) {
       console.log('get localStream');
       navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(localStream => {
         localVideo.current.srcObject = localStream
       })
     }
-    console.log('end peer.on');
   })
 
   /* ビデオ電話要求を受信 */
   peer.on('call', mediaConnection => {
-    console.log('peer.on call!!')
+    // useEffectを使うべきかもしれない
     if (localVideo.current !== null) {
       mediaConnection.answer(localVideo.current.srcObject)
 

@@ -1,13 +1,13 @@
 import React from 'react'
-// import VideoCall from './VideoCall'
-import EditArea from './EditArea'
+import VideoCall from './VideoCall'
+import TextCommunication from './TextCommunication'
 
 const App = () => {
   console.log('start App')
   return (
     <div>
-      {/* <VideoCall /> */}
-      <EditArea />
+      <VideoCall />
+      <TextCommunication />
     </div>
   )
 }
