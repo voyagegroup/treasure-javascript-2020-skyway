@@ -21,12 +21,24 @@
   const sendTrigger = document.getElementById("js-send-trigger");
   const messages = document.getElementById("js-messages");
 
+  // display
+  const myDisplay = document.getElementById("my-display");
+  const theirDisplay = document.getElementById("their-display");
+  const shareTrigger = document.getElementById("js-share-trigger");
+
   // localStream ... ビデオ、音声データ
   let localStream = await navigator.mediaDevices
     .getUserMedia({ video: true, audio: true })
     .catch((err) => alert("mediaDevice.getUserMedia() error:", err));
   myVideo.srcObject = localStream;
   myVideo.play();
+
+  // 画面共有
+  const displayStream = await navigator.mediaDevices
+    .getDisplayMedia({ video: true })
+    .catch((err) => alert("mediaDevice.getDisplayMedia() error:", err));
+  myDisplay.srcObject = displayStream;
+  myDisplay.play();
 
   cameraTrigger.addEventListener("click", () => {
     localStream.getVideoTracks()[0].enabled = !localStream.getVideoTracks()[0].enabled;
@@ -71,10 +83,23 @@
     setEventListener(mediaConnection);
   };
 
+  shareTrigger.onclick = () => {
+    // 画面共有
+    const displayConnection = peer.call(theirID.value, displayStream);
+    setEventListener2(displayConnection);
+  };
+
   const setEventListener = (mediaConnection) => {
     mediaConnection.on("stream", (stream) => {
       theirVideo.srcObject = stream;
       theirVideo.play();
+    });
+  };
+
+  const setEventListener2 = (mediaConnection) => {
+    mediaConnection.on("stream", (stream) => {
+      theirDisplay.srcObject = stream;
+      theirDisplay.play();
     });
   };
 
