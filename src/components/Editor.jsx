@@ -10,9 +10,16 @@ const Editor = React.memo((props) => {
   const text = props.text;
   const onChange = () => {
     const editText = editorInstance.getValue()
-    // console.log("editText=", editText);
-    /* 親コンポーネントのeditTextを更新 */
-    props.setEditText(editText);
+
+    if (editText !== props.text){
+      /* 親コンポーネントのeditTextを更新 */
+      const {dataConnection} = props;
+      console.log(dataConnection)
+      dataConnection.send(editText)
+      console.log('not skipppppppppp')
+    } else {
+      console.log('skipppppppppppppp')
+    }
 
   };
   /* editorInstance作成後 */
@@ -43,7 +50,7 @@ const Editor = React.memo((props) => {
   );
 },
 // Props.editTextが変更されない限り, 再レンダリングしない
-  (prevProps, nextProps) => prevProps.text === nextProps.text,
+  // (prevProps, nextProps) => prevProps.text === nextProps.text,
 );
 
 

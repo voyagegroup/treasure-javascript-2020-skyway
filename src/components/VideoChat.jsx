@@ -71,18 +71,19 @@ const VideoChat = () => {
     }
   })
 
-  useEffect (() => {
-    if (dataConnection.open === true){
-      console.log('send')
-      dataConnection.send(editText);
-    }
-  })
+  // //いるか?
+  // useEffect (() => {
+  //   if (dataConnection.open === true){
+  //     console.log('send')
+  //     dataConnection.send(editText);
+  //   }
+  // })
 
   return (
     <>
       <div style={{ display: "flex", height: "300px"}}>
         {console.log('start return ')}
-        {console.log("editText:", editText)}
+        {console.log("dataConnection:", dataConnection)}
         <div>
           <video width="300px" autoPlay muted playsInline ref={localVideo}></video>
           <div>{myId}</div>
@@ -94,7 +95,7 @@ const VideoChat = () => {
         </div>
       </div>
       {/* <button onClick={send}>メッセージ送信</button> */}
-      <Editor text={editText} setEditText={setEditText}/>
+      <Editor text={editText} dataConnection={dataConnection}/>
     </>
   )
 }
