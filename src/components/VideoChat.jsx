@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import Peer from 'skyway-js'
 import Editor from './Editor'
 
 const peer = new Peer({ key: process.env.REACT_APP_SKYWAY_KEY })
 const VideoChat = () => {
-  console.log('start VideoChat')
+  console.log('start VideoChatーーーーーーーーー')
   const [myId, setMyId] = useState('')
   const [callId, setCallId] = useState('')
   const [dataConnection, setDataConnection] = useState('')
@@ -71,10 +71,12 @@ const VideoChat = () => {
     }
   })
 
-  /* メッセージを送信時 */
-  const send = () => {
-    dataConnection.send(editText);
-  }
+  useEffect (() => {
+    if (dataConnection.open === true){
+      console.log('send')
+      dataConnection.send(editText);
+    }
+  })
 
   return (
     <>
@@ -91,7 +93,7 @@ const VideoChat = () => {
           <video width="300px" autoPlay muted playsInline ref={remoteVideo}></video>
         </div>
       </div>
-      <button onClick={send}>メッセージ送信</button>
+      {/* <button onClick={send}>メッセージ送信</button> */}
       <Editor text={editText} setEditText={setEditText}/>
     </>
   )
