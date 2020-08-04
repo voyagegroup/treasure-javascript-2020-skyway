@@ -1,13 +1,14 @@
-import React, { useRef } from 'react'
-import { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Peer from 'skyway-js'
+import Editor from './Editor'
 
 const peer = new Peer({ key: process.env.REACT_APP_SKYWAY_KEY })
 const VideoChat = () => {
+  console.log('start VideoChat')
   const [myId, setMyId] = useState('')
   const [callId, setCallId] = useState('')
   const [dataConnection, setDataConnection] = useState('')
-  const [message, setMessage] = useState('')
+  const [editText, setEditText] = useState('')
   const localVideo = useRef(null)
   const remoteVideo = useRef(null)
 
@@ -25,27 +26,7 @@ const VideoChat = () => {
     }
   })
 
-  /* テキストの接続要求を送信時 */
-  const makeConnect = () => {
-    console.log("makeConnect")
-    const dataConnection = peer.connect(callId);
-    setDataConnection(dataConnection) //Connいる?
-
-    dataConnection.on('data', data => {
-      console.log(data);
-    });
-
-  }
-  /* ビデオの接続要求を送信時 */
-  const makeCall = () => {
-    console.log('make Call')
-    const mediaConnection = peer.call(callId, localVideo.current.srcObject)
-    mediaConnection.on('stream', async stream => {
-      remoteVideo.current.srcObject = stream
-      await remoteVideo.current.play().catch(console.error)
-    })
-  }
-
+  /* 接続要求を送信 */
   const makeConnection = () => {
     console.log('make Call')
     const mediaConnection = peer.call(callId, localVideo.current.srcObject)
@@ -59,6 +40,7 @@ const VideoChat = () => {
 
     dataConnection.on('data', data => {
       console.log(data);
+      setEditText(data)
     });
   }
 
@@ -73,6 +55,7 @@ const VideoChat = () => {
     /* メッセージ受信 */
     receiveDataConnection.on('data', data => {
       console.log(data);
+      setEditText(data)
     });
   })
 
@@ -90,13 +73,14 @@ const VideoChat = () => {
 
   /* メッセージを送信時 */
   const send = () => {
-    dataConnection.send(message);
+    dataConnection.send(editText);
   }
 
   return (
     <>
-      <div style={{ display: "flex", height: "400px"}}>
+      <div style={{ display: "flex", height: "300px"}}>
         {console.log('start return ')}
+        {console.log("editText:", editText)}
         <div>
           <video width="300px" autoPlay muted playsInline ref={localVideo}></video>
           <div>{myId}</div>
@@ -107,10 +91,10 @@ const VideoChat = () => {
           <video width="300px" autoPlay muted playsInline ref={remoteVideo}></video>
         </div>
       </div>
-      <input onChange={e => setMessage(e.target.value)}></input>
       <button onClick={send}>メッセージ送信</button>
+      <Editor text={editText} setEditText={setEditText}/>
     </>
-    )
+  )
 }
 
 export default VideoChat
