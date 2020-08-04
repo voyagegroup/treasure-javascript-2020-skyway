@@ -3,7 +3,13 @@ import './App.css';
 import Peer, { MediaConnection } from 'skyway-js';
 import VideoStream from './components/VideoStream';
 
-const connectMyStream = async (setMyStream: any) => {
+const setMediaStreamListener = (mediaConnection: MediaConnection, setStream: any) => {
+  mediaConnection.on('stream', stream => {
+    setStream(stream);
+  })
+}
+
+const connectMyMediaStream = async (setMyStream: any) => {
     const myStream = await navigator.mediaDevices.getUserMedia({
       video: true,
       audio: true,
@@ -12,22 +18,16 @@ const connectMyStream = async (setMyStream: any) => {
     setMyStream(myStream);
 }
 
-const setStreamListener = (mediaConnection: MediaConnection, setStream: any) => {
-  mediaConnection.on('stream', stream => {
-    setStream(stream);
-  })
-}
-
-const makeCall = (peer: Peer, theirId: string, myStream: MediaStream, setTheirStream: any) => {
+const connectTheirMediaStream = (peer: Peer, theirId: string, myStream: MediaStream, setTheirStream: any) => {
   const mediaConnection = peer.call(theirId, myStream);
-  setStreamListener(mediaConnection, setTheirStream);
+  setMediaStreamListener(mediaConnection, setTheirStream);
 }
 
 function App() {
   const SKYWAY_API_KEY = '9e30e124-19b5-462f-9315-0c8e4ebe5f96';
 
-  const [myStream, setMyStream] = useState<MediaStream | null>(null);
-  const [theirStream, setTheirStream] = useState<MediaStream | null>(null);
+  const [myMediaStream, setMyMediaStream] = useState<MediaStream | null>(null);
+  const [theirMediaStream, setTheirMediaStream] = useState<MediaStream | null>(null);
 
   const [peer] = useState(new Peer({key: SKYWAY_API_KEY}));
 
@@ -35,31 +35,31 @@ function App() {
   const [theirId, setTheirId] = useState('');
 
   useEffect(() => {
-    if (!myStream) {
-      connectMyStream(setMyStream);
+    if (!myMediaStream) {
+      connectMyMediaStream(setMyMediaStream);
     } else {
       peer.on('open', () => {
         setMyId(peer.id);
       })
     
       peer.on('call', mediaConnection => {
-        mediaConnection.answer(myStream);
-        setStreamListener(mediaConnection, setTheirStream);
+        mediaConnection.answer(myMediaStream);
+        setMediaStreamListener(mediaConnection, setTheirMediaStream);
       });
     }
-  }, [peer, myStream]);
+  }, [peer, myMediaStream]);
 
   return (
     <div className="App">
       <VideoStream
-        srcObject={myStream}
+        srcObject={myMediaStream}
         width="400px"
         autoPlay
         playsInline
         muted
       />
       <VideoStream
-        srcObject={theirStream}
+        srcObject={theirMediaStream}
         width="400px"
         autoPlay
         playsInline
@@ -67,7 +67,7 @@ function App() {
       <p>My ID: {myId}</p>
       <input type="text" onChange={(e) => setTheirId(e.target.value)}></input>
       <button
-        onClick={() => makeCall(peer, theirId, myStream!, setTheirStream)}
+        onClick={() => connectTheirMediaStream(peer, theirId, myMediaStream!, setTheirMediaStream)}
       >
         Call
       </button>
