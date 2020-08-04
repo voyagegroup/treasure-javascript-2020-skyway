@@ -57,34 +57,34 @@
     
     //   peer.once('open', id => (localId.textContent = id));
     
-    //   peer.on('connection', dataConnection => {
-    //     dataConnection.once('open', async () => {
-    //       messages.textContent += `=== DataConnection has been opened ===\n`;
+      peer.on('connection', dataConnection => {
+        dataConnection.once('open', async () => {
+          messages.textContent += `=== DataConnection has been opened ===\n`;
     
-    //       sendTrigger.addEventListener('click', onClickSend);
-    //     });
+          sendTrigger.addEventListener('click', onClickSend);
+        });
     
-    //     dataConnection.on('data', data => {
-    //       messages.textContent += `Remote: ${data}\n`;
-    //     });
+        dataConnection.on('data', data => {
+          messages.textContent += `Remote: ${data}\n`;
+        });
     
-    //     dataConnection.once('close', () => {
-    //       messages.textContent += `=== DataConnection has been closed ===\n`;
-    //       sendTrigger.removeEventListener('click', onClickSend);
-    //     });
+        dataConnection.once('close', () => {
+          messages.textContent += `=== DataConnection has been closed ===\n`;
+          sendTrigger.removeEventListener('click', onClickSend);
+        });
     
-    //     closeTrigger.addEventListener('click', () => dataConnection.close(), {
-    //       once: true,
-    //     });
+        closeTrigger.addEventListener('click', () => dataConnection.close(), {
+          once: true,
+        });
     
-    //     function onClickSend() {
-    //       const data = localText.value;
-    //       dataConnection.send(data);
+        function onClickSend() {
+          const data = localText.value;
+          dataConnection.send(data);
     
-    //       messages.textContent += `You: ${data}\n`;
-    //       localText.value = '';
-    //     }
-    //   });
+          messages.textContent += `You: ${data}\n`;
+          localText.value = '';
+        }
+      });
     
       peer.on('error', console.error);
     })();
