@@ -1,5 +1,4 @@
 (async function(){
-
     let localStream;
 
     try{
@@ -16,7 +15,6 @@
         key: 'f4314d6c-ad3c-450c-90df-2811611d4a25',
         debug: 3
       });
-
 
     peer.on('open', () => {
         document.getElementById('my-id').textContent = peer.id;
@@ -47,6 +45,7 @@
 
 
     peer.on('error', console.error);
+
     peer.on('close', () => {
         alert("hogehoge")
     });
