@@ -7,12 +7,22 @@
   <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
 </head>
 <body>
-    <h1>Hello Treasure!!!</h1>
+    <h1>Treasure Voice</h1>
     <video id="my-video" width="400px" autoplay muted playsinline></video>
     <p id="my-id"></p>
     <textarea id="their-id"></textarea>
-    <button id="make-call">発信</button>
-    <video id="their-video" width="400px" autoplay playsinline></video>
+    <button id="js-connect-trigger">Call</button>
+    <button id="js-close-trigger">Close</button>
+    <video id="their-video" width="400px" autoplay muted playsinline></video>
     <script src="./index.js"></script>
+
+    <div>
+      <div>
+        <pre class="messages" id="js-messages"></pre>
+        <input type="text" id="js-local-text">
+        <button id="js-send-trigger">Send</button>
+      </div>
+    </div>
+      <!-- <p class="meta" id="js-meta"></p> -->
 </body>
 </html>
