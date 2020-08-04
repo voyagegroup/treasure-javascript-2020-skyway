@@ -24,19 +24,33 @@
   document.getElementById("make-call").onclick = () => {
     const theirID = document.getElementById("their-id").value;
     const mediaConnection = peer.call(theirID, localStream);
-    setEventListener(mediaConnection);
+    setCallEventListener(mediaConnection);
   };
+
   // イベントリスナ
-  const setEventListener = (mediaConnection) => {
+  // 通話が繋がったときに相手の画面の表示
+  const setCallEventListener = (mediaConnection) => {
+    // 通話開始イベント
     mediaConnection.on("stream", (stream) => {
       const videoElement = document.getElementById("their-video");
       videoElement.srcObject = stream;
       videoElement.play();
+
+      // 切断イベント
+      mediaConnection.on("close", () => {
+        alert("通信が切断しました。");
+        const videoElement = document.getElementById("their-video");
+        videoElement.load();
+      });
+
+      // 能動的切断
+      document.getElementById("close-call").addEventListener('click', () => mediaConnection.close(true))
     });
   };
+
   // 着信処理
   peer.on("call", (mediaConnection) => {
     mediaConnection.answer(localStream);
-    setEventListener(mediaConnection);
+    setCallEventListener(mediaConnection);
   });
 })();
