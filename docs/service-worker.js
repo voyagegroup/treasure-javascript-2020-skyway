@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/treasure-javascript-2020-skyway/precache-manifest.1d4c61479f09fded64672aa171d4fefa.js"
+  "/treasure-javascript-2020-skyway/precache-manifest.f1d1a4237c8d2f95653e547065033da8.js"
 );
 
 self.addEventListener('message', (event) => {
