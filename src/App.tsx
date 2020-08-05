@@ -28,7 +28,7 @@ function App() {
       peer.on('open', () => {
         setMyId(peer.id);
       })
-    
+
       peer.on('call', mediaConnection => {
         mediaConnection.answer(myMediaStream);
         listenMediaStream(mediaConnection, setTheirMediaStream);
@@ -42,6 +42,12 @@ function App() {
       listenTheirDataStream(dataConnection);
     });
   }, [peer, messages])
+
+  useEffect(() => {
+    if (!!peer.id) {
+      setMyId(peer.id)
+    }
+  }, [peer.id])
 
   const listenMediaStream = (mediaConnection: MediaConnection, setStream: any) => {
     mediaConnection.on('stream', stream => {
