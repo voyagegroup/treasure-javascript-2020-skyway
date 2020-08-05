@@ -106,7 +106,6 @@ function App() {
             srcObject={theirMediaStream}
             autoPlay
             playsInline
-            muted
           />
           <VideoStream
             srcObject={myMediaStream}
