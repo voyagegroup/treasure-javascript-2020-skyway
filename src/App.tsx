@@ -4,6 +4,7 @@ import Peer, { MediaConnection, DataConnection } from 'skyway-js';
 import VideoStream from './components/VideoStream';
 import { Message } from './components/MessageLogList';
 import Chat from './components/Chat';
+import ControlPanel from './components/ControlPanel';
 
 function App() {
   const SKYWAY_API_KEY = '9e30e124-19b5-462f-9315-0c8e4ebe5f96';
@@ -89,20 +90,16 @@ function App() {
         playsInline
         muted
       />
-      <p>My ID: {myId}</p>
-      <div>
-        <input type="text" onChange={(e) => setTheirId(e.target.value)}></input>
-        <button
-          onClick={() => {
-            connectTheirMediaStream();
+      <ControlPanel
+        myPeerId={myId}
+        onChangeTheirId={(e) => setTheirId(e.target.value)}
+        onClickCall={() => {
+          connectTheirMediaStream();
 
-            const dataConnection = connectTheirDataStream();
-            listenTheirDataStream(dataConnection);
-          }}
-        >
-          Call
-        </button>
-      </div>
+          const dataConnection = connectTheirDataStream();
+          listenTheirDataStream(dataConnection);
+        }}
+      />
       {theirDataStream !== null && 
         <Chat
           messages={messages}
