@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import Peer from 'skyway-js'
 import Editor from './Editor'
 
@@ -70,14 +70,6 @@ const VideoChat = () => {
       })
     }
   })
-
-  // //いるか?
-  // useEffect (() => {
-  //   if (dataConnection.open === true){
-  //     console.log('send')
-  //     dataConnection.send(editText);
-  //   }
-  // })
 
   return (
     <>
