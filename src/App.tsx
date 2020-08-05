@@ -107,15 +107,19 @@ function App() {
       />
       {theirDataStream !== null && 
         <Chat
+          message={message}
           messages={messages}
           onChangeMessage={(e) => setMessage(e.target.value)}
           onClickSend={() => {
-            const messageLog: Message = {
+            const msg: Message = {
               type: 'txt',
               data: message,
               datetime: new Date().toISOString(),
             }
-            theirDataStream.send(messageLog);
+
+            setMessage('')
+            setMessages((messages: Message[]) => messages.concat(msg))
+            theirDataStream.send(msg);
           }}
           onFileChange={(e) => {
             const imgFile = e.target.files[0];
@@ -124,13 +128,14 @@ function App() {
             fileReader.onload = function() {
               const base64: any = this.result!;
 
-              const messageLog: Message = {
+              const msg: Message = {
                 type: 'img',
                 data: base64,
                 datetime: new Date().toISOString(),
               }
 
-              theirDataStream.send(messageLog);
+              theirDataStream.send(msg);
+              setMessages((messages: Message[]) => messages.concat(msg))
             }
 
             if (imgFile) {

@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       position: 'fixed',
       right: 0,
-      top: '200px',
+      top: '180px',
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
         width: '25ch',
@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface Props {
+  message: string
   messages: Message[]
   onChangeMessage: (event: any) => void
   onClickSend: (event: any) => void
@@ -36,7 +37,11 @@ function Chat(props: Props) {
   return (
     <div id='chat' className={classes.root}>
       <MessageLogList messageList={props.messages} />
-      <TextField type="text" onChange={props.onChangeMessage}></TextField>
+      <TextField
+        type="text"
+        onChange={props.onChangeMessage}
+        value={props.message}
+      ></TextField>
       <Button color="primary" onClick={props.onClickSend}>SEND</Button>
       <div className={classes.fileUpload}>
         <input
@@ -53,7 +58,7 @@ function Chat(props: Props) {
             component="span"
             fullWidth
           >
-            Upload
+            Upload image file
           </Button>
         </label>
       </div>
