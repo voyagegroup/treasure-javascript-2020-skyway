@@ -12,5 +12,5 @@
     "esModuleInterop": true,
     "jsx": "react"
   },
-  "exclude": ["node_modules", "webpack.config.js", "dist"]
+  "exclude": ["node_modules", "webpack.config.js", "docs"]
 }
