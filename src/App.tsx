@@ -84,14 +84,13 @@ function App() {
     <div className="App">
       <VideoStream
         srcObject={myMediaStream}
-        width="400px"
         autoPlay
         playsInline
         muted
       />
       <VideoStream
+        primary
         srcObject={theirMediaStream}
-        width="400px"
         autoPlay
         playsInline
         muted
