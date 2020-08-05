@@ -1,4 +1,16 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { makeStyles, Theme, createStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      height: 'calc(100vh - 300px)',
+      overflow: 'scroll',
+      borderTop: 'solid 1px #aaa',
+      marginTop: theme.spacing(1),
+    },
+  }),
+)
 
 export interface Message {
     type: string
@@ -29,12 +41,24 @@ interface Props {
 }
 
 function MessageLogList({messageList}: Props) {
+  const classes = useStyles();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (ref.current !== null) {
+      ref.current.scrollTop = ref.current.scrollHeight;
+    }
+  }, [messageList])
+
   return (
-    <div>
+    <div
+      ref={ref}
+      className={classes.root}
+    >
       {messageList.map(({type, data, datetime}) => {
         return (
           <MessageLog key={datetime} type={type} data={data} datetime={datetime} />
-          )
+        )
       })}
     </div>
   )
