@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Peer, { MediaConnection, DataConnection } from 'skyway-js';
 import VideoStream from './components/VideoStream';
-import MessageLogList, { Message } from './components/MessageLogList';
+import { Message } from './components/MessageLogList';
+import Chat from './components/Chat';
 
 function App() {
   const SKYWAY_API_KEY = '9e30e124-19b5-462f-9315-0c8e4ebe5f96';
@@ -102,10 +103,11 @@ function App() {
           Call
         </button>
       </div>
-      {theirDataStream !== null && (<div>
-        <input type="text" onChange={(e) => setMessage(e.target.value)}></input>
-        <button
-          onClick={() => {
+      {theirDataStream !== null && 
+        <Chat
+          messages={messages}
+          onChangeMessage={(e) => setMessage(e.target.value)}
+          onClickSend={() => {
             const messageLog: Message = {
               type: 'txt',
               data: message,
@@ -113,11 +115,8 @@ function App() {
             }
             theirDataStream.send(messageLog);
           }}
-        >
-          Send
-        </button>
-      </div>)}
-      <MessageLogList messageList={messages} />
+        />
+      }
     </div>
   );
 }
