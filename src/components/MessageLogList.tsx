@@ -17,6 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
       wordWrap: 'break-word',
     },
     messageLogImg: {
+      width: '100%',
+      marginBottom: theme.spacing(1),
     }
   }),
 )
