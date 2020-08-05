@@ -34,9 +34,9 @@
   myVideo.play();
 
   // displayStream: 画面共有
-  const displayStream = await navigator.mediaDevices
-    .getDisplayMedia({ video: true })
-    .catch((err) => alert("mediaDevice.getDisplayMedia() error:", err));
+  // const displayStream = await navigator.mediaDevices
+  //   .getDisplayMedia({ video: true })
+  //   .catch((err) => alert("mediaDevice.getDisplayMedia() error:", err));
 
   cameraTrigger.addEventListener("click", () => {
     localStream.getVideoTracks()[0].enabled = !localStream.getVideoTracks()[0].enabled;
@@ -78,11 +78,11 @@
     setEventListener(mediaConnection);
   };
 
-  shareTrigger.onclick = () => {
-    // 画面共有
-    const displayConnection = peer.call(theirID.value, displayStream);
-    setEventListener2(displayConnection);
-  };
+  // 画面共有
+  // shareTrigger.onclick = () => {
+  //   const displayConnection = peer.call(theirID.value, displayStream);
+  //   setEventListener2(displayConnection);
+  // };
 
   const setEventListener = (mediaConnection) => {
     mediaConnection.on("stream", (stream) => {
@@ -91,12 +91,12 @@
     });
   };
 
-  const setEventListener2 = (mediaConnection) => {
-    mediaConnection.on("stream", (stream) => {
-      theirDisplay.srcObject = stream;
-      theirDisplay.play();
-    });
-  };
+  // const setEventListener2 = (mediaConnection) => {
+  //   mediaConnection.on("stream", (stream) => {
+  //     theirDisplay.srcObject = stream;
+  //     theirDisplay.play();
+  //   });
+  // };
 
   // バン
   disconnectTrigger.onclick = () => {

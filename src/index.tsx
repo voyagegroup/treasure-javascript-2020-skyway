@@ -1,0 +1,10 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import { App } from "./components/App";
+
+// とりあえずskywayの読み込み
+import "./skyway";
+
+const target = document.getElementById("app");
+
+ReactDOM.render(<App />, target);

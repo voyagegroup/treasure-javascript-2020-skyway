@@ -1,0 +1,30 @@
+{
+  "name": "treasure-javascript-2020-skyway",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --mode development --open",
+    "build": "rm -rf dist && webpack --mode production"
+  },
+  "repository": "git@github.com:Kudoas/treasure-javascript-2020-skyway.git",
+  "author": "<sakanactor624@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.10.4",
+    "@types/react": "^16.9.42",
+    "@types/react-dom": "^16.9.8",
+    "babel-loader": "^8.1.0",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "path": "^0.12.7",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "ts-loader": "^8.0.0",
+    "typescript": "^3.9.6",
+    "webpack": "^4.43.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
