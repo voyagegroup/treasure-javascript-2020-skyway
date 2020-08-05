@@ -9,14 +9,13 @@ interface Props extends VideoHTMLAttributes<HTMLVideoElement> {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: ({primary} : {primary: boolean}) => ({
-      margin: theme.spacing(1),
-      borderRadius: '10px',
-      backgroundColor: 'black',
-      position: 'fixed',
+      position: primary ? 'relative' : 'absolute',
+      zIndex: primary ? 10 : 11,
+      width: primary ? '100%' : '20%',
       left: 0,
       top: 0,
-      width: primary ? 'calc(100% - 25ch - 100px)' : '20%',
-      zIndex: primary ? 10 : 11,
+      borderRadius: '10px',
+      backgroundColor: 'black',
     }),
   }),
 );

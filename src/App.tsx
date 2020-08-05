@@ -5,9 +5,26 @@ import VideoStream from './components/VideoStream';
 import { Message } from './components/MessageLogList';
 import Chat from './components/Chat';
 import ControlPanel from './components/ControlPanel';
+import { makeStyles, Theme, createStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    videoStreamContainer: {
+      display: 'flex',
+      height: '100vh',
+      alignItems: 'center',
+    },
+    videoStream: {
+      margin: theme.spacing(1),
+      position: 'relative',
+      width: 'calc((100% - 25ch) - 100px)',
+    },
+  }),
+);
 
 function App() {
   const SKYWAY_API_KEY = '9e30e124-19b5-462f-9315-0c8e4ebe5f96';
+  const classes = useStyles();
 
   const [myMediaStream, setMyMediaStream] = useState<MediaStream | null>(null);
   const [theirMediaStream, setTheirMediaStream] = useState<MediaStream | null>(null);
@@ -82,19 +99,23 @@ function App() {
   
   return (
     <div className="App">
-      <VideoStream
-        srcObject={myMediaStream}
-        autoPlay
-        playsInline
-        muted
-      />
-      <VideoStream
-        primary
-        srcObject={theirMediaStream}
-        autoPlay
-        playsInline
-        muted
-      />
+      <div className={classes.videoStreamContainer}>
+        <div className={classes.videoStream}>
+          <VideoStream
+            primary
+            srcObject={theirMediaStream}
+            autoPlay
+            playsInline
+            muted
+          />
+          <VideoStream
+            srcObject={myMediaStream}
+            autoPlay
+            playsInline
+            muted
+          />
+        </div>
+      </div>
       <ControlPanel
         myPeerId={myId}
         onChangeTheirId={(e) => setTheirId(e.target.value)}

@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     messageLogImg: {
       width: '100%',
+      borderRadius: '10px',
       marginBottom: theme.spacing(1),
     }
   }),
