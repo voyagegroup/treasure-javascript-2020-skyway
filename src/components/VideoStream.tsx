@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
       position: primary ? 'relative' : 'absolute',
       zIndex: primary ? 10 : 11,
       width: primary ? '100%' : '20%',
+      maxHeight: primary ? '90vh' : undefined,
       left: 0,
       top: 0,
       borderRadius: '10px',

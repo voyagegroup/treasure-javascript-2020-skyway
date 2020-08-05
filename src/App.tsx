@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme: Theme) =>
       margin: theme.spacing(1),
       position: 'relative',
       width: 'calc((100% - 25ch) - 100px)',
-      maxHeight: '100vh',
     },
   }),
 );
