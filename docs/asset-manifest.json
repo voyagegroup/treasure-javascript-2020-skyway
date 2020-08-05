@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/treasure-javascript-2020-skyway/static/css/main.49543553.chunk.css",
-    "main.js": "/treasure-javascript-2020-skyway/static/js/main.b7a97fef.chunk.js",
-    "main.js.map": "/treasure-javascript-2020-skyway/static/js/main.b7a97fef.chunk.js.map",
+    "main.js": "/treasure-javascript-2020-skyway/static/js/main.b73b7c66.chunk.js",
+    "main.js.map": "/treasure-javascript-2020-skyway/static/js/main.b73b7c66.chunk.js.map",
     "runtime-main.js": "/treasure-javascript-2020-skyway/static/js/runtime-main.52a76cba.js",
     "runtime-main.js.map": "/treasure-javascript-2020-skyway/static/js/runtime-main.52a76cba.js.map",
     "static/js/2.0711ff93.chunk.js": "/treasure-javascript-2020-skyway/static/js/2.0711ff93.chunk.js",
     "static/js/2.0711ff93.chunk.js.map": "/treasure-javascript-2020-skyway/static/js/2.0711ff93.chunk.js.map",
     "index.html": "/treasure-javascript-2020-skyway/index.html",
-    "precache-manifest.cff286d289d5457e6281c92e7ed11360.js": "/treasure-javascript-2020-skyway/precache-manifest.cff286d289d5457e6281c92e7ed11360.js",
+    "precache-manifest.1d4c61479f09fded64672aa171d4fefa.js": "/treasure-javascript-2020-skyway/precache-manifest.1d4c61479f09fded64672aa171d4fefa.js",
     "service-worker.js": "/treasure-javascript-2020-skyway/service-worker.js",
     "static/css/main.49543553.chunk.css.map": "/treasure-javascript-2020-skyway/static/css/main.49543553.chunk.css.map",
     "static/js/2.0711ff93.chunk.js.LICENSE.txt": "/treasure-javascript-2020-skyway/static/js/2.0711ff93.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.52a76cba.js",
     "static/js/2.0711ff93.chunk.js",
     "static/css/main.49543553.chunk.css",
-    "static/js/main.b7a97fef.chunk.js"
+    "static/js/main.b73b7c66.chunk.js"
   ]
 }
