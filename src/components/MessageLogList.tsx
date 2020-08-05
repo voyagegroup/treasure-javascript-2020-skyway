@@ -9,31 +9,49 @@ const useStyles = makeStyles((theme: Theme) =>
       borderTop: 'solid 1px #aaa',
       marginTop: theme.spacing(1),
     },
+    messageLog: {
+      borderBottom: 'solid 1px #aaf',
+      width: 'calc(25ch + 50px)',
+    },
+    messageLogTxt: {
+      wordWrap: 'break-word',
+    },
+    messageLogImg: {
+    }
   }),
 )
 
 export interface Message {
-    type: string
+    type: 'txt' | 'img'
     data: string
     datetime: string
 }
 
-function MessageLog({type, data}: Message) {
+function MessageLog({type, data, datetime}: Message) {
+  const classes = useStyles();
+
   if (type === 'txt') {
     return (
-      <div className="message-log">
-        <p>{data}</p>
+      <div className={classes.messageLog}>
+        <p>{datetime}</p>
+        <p className={classes.messageLogTxt}>{data}</p>
       </div>
     );
   } else if (type === 'img') {
     return (
-      <div className="message-log">
-        <img src={data} alt="img"></img>
+      <div className={classes.messageLog}>
+        <p>{datetime}</p>
+        <img src={data} alt="img" className={classes.messageLogImg}></img>
       </div>
     );
   }
 
-  return <div className="message-log">Invalid message</div>;
+  return (
+    <div className={classes.messageLog}>
+      <p>{datetime}</p>
+      <p>Invalid message</p>
+    </div>
+  );
 }
 
 interface Props {

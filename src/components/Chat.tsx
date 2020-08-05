@@ -13,6 +13,13 @@ const useStyles = makeStyles((theme: Theme) =>
         width: '25ch',
       },
     },
+    fileUpload: {
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(1),
+    },
+    fileInput: {
+      display: 'none',
+    }
   }),
 );
 
@@ -20,6 +27,7 @@ interface Props {
   messages: Message[]
   onChangeMessage: (event: any) => void
   onClickSend: (event: any) => void
+  onFileChange: (event: any) => void
 }
 
 function Chat(props: Props) {
@@ -29,7 +37,26 @@ function Chat(props: Props) {
     <div id='chat' className={classes.root}>
       <MessageLogList messageList={props.messages} />
       <TextField type="text" onChange={props.onChangeMessage}></TextField>
-      <Button onClick={props.onClickSend}>SEND</Button>
+      <Button color="primary" onClick={props.onClickSend}>SEND</Button>
+      <div className={classes.fileUpload}>
+        <input
+          accept="image/*"
+          className={classes.fileInput}
+          id="contained-button-file"
+          type="file"
+          onChange={(e) => props.onFileChange(e)}
+        />
+        <label htmlFor="contained-button-file">
+          <Button
+            variant="outlined"
+            color="primary"
+            component="span"
+            fullWidth
+          >
+            Upload
+          </Button>
+        </label>
+      </div>
     </div>
   );
 }

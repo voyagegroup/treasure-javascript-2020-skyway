@@ -117,6 +117,26 @@ function App() {
             }
             theirDataStream.send(messageLog);
           }}
+          onFileChange={(e) => {
+            const imgFile = e.target.files[0];
+            const fileReader = new FileReader();
+
+            fileReader.onload = function() {
+              const base64: any = this.result!;
+
+              const messageLog: Message = {
+                type: 'img',
+                data: base64,
+                datetime: new Date().toISOString(),
+              }
+
+              theirDataStream.send(messageLog);
+            }
+
+            if (imgFile) {
+              fileReader.readAsDataURL(imgFile);
+            }
+          }}
         />
       }
     </div>
