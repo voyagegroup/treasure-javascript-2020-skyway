@@ -1,4 +1,25 @@
 import React from 'react';
+import { Button, TextField } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      position: 'fixed',
+      right: 0,
+      top: 0,
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: '25ch',
+      },
+    },
+    row: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  }),
+);
 
 interface Props {
   myPeerId: string
@@ -7,34 +28,40 @@ interface Props {
 }
 
 function ControlPanel(props: Props) {
+  const classes = useStyles();
+
   const copyMyPeerId = () => {
     navigator.clipboard.writeText(props.myPeerId)
   }
 
   return (
-    <div id="control-panel">
-      <div>
-        <label htmlFor="my-id">Your ID: </label>
-        <input
+    <form id="control-panel" className={classes.root} noValidate autoComplete="off">
+      <div className={classes.row}>
+        <TextField
           id="my-id"
           className="peer-id"
+          label="My ID"
           type="text"
-          readOnly
+          InputProps={{
+            readOnly: true,
+          }}
+          variant="filled"
           value={props.myPeerId}
-        ></input>
-        <button onClick={() => copyMyPeerId()}>Copy</button>
+        ></TextField>
+        <Button onClick={() => copyMyPeerId()}>Copy</Button>
       </div>
-      <div>
-        <label htmlFor="their-id">Their ID: </label>
-        <input
+      <div className={classes.row}>
+        <TextField
           id="their-id"
           className="peer-id"
+          label="Their ID"
           type="text"
+          required
           onChange={props.onChangeTheirId}
-        ></input>
-        <button onClick={props.onClickCall}>Call</button>
+        ></TextField>
+        <Button onClick={props.onClickCall} color="primary">Call</Button>
       </div>
-    </div>
+    </form>
   );
 }
 
