@@ -1,18 +1,18 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Peer, { MediaConnection } from "skyway-js";
+
+import { VideoStream } from "./components/Video";
 
 const peer = new Peer({
   key: "1212399c-448f-4135-89d3-76deff99795a",
 });
 
-export const Video: React.FCX = ({ className }) => {
+export const Main: React.FCX = ({ className }) => {
   const [peerId, setPeerId] = useState("");
   const [callId, setCallId] = useState("");
   const [myStream, setMyStream] = useState<MediaStream | null>(null);
   const [theirStream, setTheirStream] = useState<MediaStream | null>(null);
   const [isCamera, setIsCamera] = useState(true);
-  const localVideo: any = useRef<HTMLVideoElement>(null);
-  const remoteVideo: any = useRef();
 
   useEffect(() => {
     if (!myStream) {
@@ -30,19 +30,20 @@ export const Video: React.FCX = ({ className }) => {
 
   const getMediaStream = async () => {
     const localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-    localVideo.current.srcObject = localStream;
     setMyStream(localStream);
   };
 
-  const setEventListener = (mediaConnection: MediaConnection, setStream: any) => {
+  const setEventListener = (
+    mediaConnection: MediaConnection,
+    setStream: React.Dispatch<React.SetStateAction<MediaStream | null>>
+  ) => {
     mediaConnection.on("stream", (stream: MediaStream) => {
-      remoteVideo.current.srcObject = stream;
       setStream(stream);
     });
   };
 
   const connectHandler = () => {
-    const mediaConnection = peer.call(callId, localVideo.current.srcObject);
+    const mediaConnection = peer.call(callId, myStream!);
     setEventListener(mediaConnection, setTheirStream);
   };
 
@@ -59,19 +60,19 @@ export const Video: React.FCX = ({ className }) => {
   };
 
   const videoMuteHandler = () => {
-    localVideo.current.srcObject.getVideoTracks()[0].enabled = !isCamera;
+    myStream!.getVideoTracks()[0].enabled = !isCamera;
     setIsCamera(!isCamera);
   };
 
   return (
     <section>
+      <VideoStream width="400px" autoPlay muted srcObject={myStream}></VideoStream>
+      <VideoStream width="400px" autoPlay muted srcObject={theirStream}></VideoStream>
       <div>{peerId}</div>
       <input value={callId} onChange={handleChange}></input>
       <button onClick={connectHandler}>発信</button>
       <button onClick={disconnectHandler}>切断</button>
-      <video width="400px" autoPlay muted={true} ref={localVideo}></video>
       <button onClick={videoMuteHandler}>Camera {isCamera ? "ON" : "OFF"}</button>
-      <video width="400px" autoPlay muted={true} ref={remoteVideo}></video>
     </section>
   );
 };
