@@ -1,6 +1,7 @@
 deploy:
-	rm -rf dist && webpack --mode production &&
-	git branch gh-pages && 
-	git add dist &&
-	git commit -m "$m" &&
-	git subtree push --prefix dist origin gh-pages
+	yarn run build 
+	git add dist 
+	git commit -m "$m" 
+	git subtree split --prefix dist -b gh-pages
+	git push -f origin gh-pages:gh-pages
+	rm -rf dist
