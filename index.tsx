@@ -1,9 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { App } from "./src/App";
 
-// とりあえずskywayの読み込み
-// import "./src/skyway";
+import { App } from "./src/App";
 
 const target = document.getElementById("app");
 

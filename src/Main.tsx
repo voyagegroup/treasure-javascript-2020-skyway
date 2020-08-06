@@ -4,7 +4,7 @@ import Peer, { MediaConnection } from "skyway-js";
 import { VideoStream } from "./components/Video";
 
 const peer = new Peer({
-  key: "1212399c-448f-4135-89d3-76deff99795a",
+  key: process.env.SKYWAY_API_KEY!,
 });
 
 export const Main: React.FCX = ({ className }) => {
@@ -26,7 +26,7 @@ export const Main: React.FCX = ({ className }) => {
         }
       });
     }
-  }, [myStream]);
+  }, [myStream, peerId]);
 
   const getMediaStream = async () => {
     const localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
