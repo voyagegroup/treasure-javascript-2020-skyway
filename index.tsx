@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { App } from "./src/App";
 
 // とりあえずskywayの読み込み
-import "./src/skyway";
+// import "./src/skyway";
 
 const target = document.getElementById("app");
 
