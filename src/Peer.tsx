@@ -1,47 +1,49 @@
 import React, { useState, useRef, useEffect } from "react";
-import Peer from "skyway-js";
+import Peer, { MediaConnection } from "skyway-js";
 
 const peer = new Peer({
   key: "1212399c-448f-4135-89d3-76deff99795a",
-  debug: 3,
 });
 
 export const Video: React.FCX = ({ className }) => {
   const [peerId, setPeerId] = useState("");
   const [callId, setCallId] = useState("");
-  const [camera, setCamera] = useState(true);
-  const localVideo: any = useRef();
+  const [myStream, setMyStream] = useState<MediaStream | null>(null);
+  const [theirStream, setTheirStream] = useState<MediaStream | null>(null);
+  const [isCamera, setIsCamera] = useState(true);
+  const localVideo: any = useRef<HTMLVideoElement>(null);
   const remoteVideo: any = useRef();
 
   useEffect(() => {
-    peer.once("open", (id) => setPeerId(id));
-    (async () => {
-      const localStream = await navigator.mediaDevices
-        .getUserMedia({ video: true, audio: true })
-        .catch((err) => alert(err));
-      localVideo.current.srcObject = localStream;
-    })();
-  }, []);
+    if (!myStream) {
+      getMediaStream();
+    } else {
+      peer.once("open", (id) => setPeerId(id));
+      peer.on("call", (call) => {
+        if (confirm("接続しますか?")) {
+          call.answer(myStream);
+          setEventListener(call, setTheirStream);
+        }
+      });
+    }
+  }, [myStream]);
+
+  const getMediaStream = async () => {
+    const localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    localVideo.current.srcObject = localStream;
+    setMyStream(localStream);
+  };
+
+  const setEventListener = (mediaConnection: MediaConnection, setStream: any) => {
+    mediaConnection.on("stream", (stream: MediaStream) => {
+      remoteVideo.current.srcObject = stream;
+      setStream(stream);
+    });
+  };
 
   const connectHandler = () => {
     const mediaConnection = peer.call(callId, localVideo.current.srcObject);
-    setEventListener(mediaConnection);
-  };
-
-  // 相手からの発信
-  peer.on("call", (call) => {
-    if (confirm("相手が見つかりました！\n接続しますか？")) {
-      // 相手に自分のメディアストリームを送りつける！
-      call.answer(localVideo.current.srcObject);
-      // 相手のメディアストリームを自分のremoteVideoに表示する
-      setEventListener(call);
-    }
-  });
-
-  const setEventListener = (mediaConnection: any) => {
-    mediaConnection.on("stream", (stream: any) => {
-      remoteVideo.current.srcObject = stream;
-    });
+    setEventListener(mediaConnection, setTheirStream);
   };
 
   const disconnectHandler = () => {
@@ -57,8 +59,8 @@ export const Video: React.FCX = ({ className }) => {
   };
 
   const videoMuteHandler = () => {
-    localVideo.current.srcObject.getVideoTracks()[0].enabled = !camera;
-    setCamera(!camera);
+    localVideo.current.srcObject.getVideoTracks()[0].enabled = !isCamera;
+    setIsCamera(!isCamera);
   };
 
   return (
@@ -68,7 +70,7 @@ export const Video: React.FCX = ({ className }) => {
       <button onClick={connectHandler}>発信</button>
       <button onClick={disconnectHandler}>切断</button>
       <video width="400px" autoPlay muted={true} ref={localVideo}></video>
-      <button onClick={videoMuteHandler}>Camera {camera ? "ON" : "OFF"}</button>
+      <button onClick={videoMuteHandler}>Camera {isCamera ? "ON" : "OFF"}</button>
       <video width="400px" autoPlay muted={true} ref={remoteVideo}></video>
     </section>
   );
