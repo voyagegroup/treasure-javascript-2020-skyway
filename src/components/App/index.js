@@ -3,7 +3,7 @@ import { useRef, useState } from "react"
 import Peer from "skyway-js"
 import React from "react"
 
-const peer = new Peer({ key: "0d86e670-104c-4f9c-8571-008f4f350a9f" })
+const peer = new Peer({ key: API_KEY })
 
 const App = () => {
   const [myId, setMyId] = useState("")
