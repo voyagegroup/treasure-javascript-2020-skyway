@@ -8,10 +8,9 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
     "esModuleInterop": true,
     "jsx": "react",
     "typeRoots": ["node_modules/@types", "src/types"]
   },
-  "exclude": ["node_modules", "webpack.config.js", "dist"]
+  "exclude": ["node_modules", "webpack.*", "dist"]
 }

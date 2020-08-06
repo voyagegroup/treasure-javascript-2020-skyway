@@ -1,19 +1,11 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const Dotenv = require("dotenv-webpack");
 
 module.exports = {
-  mode: "development",
   entry: "./index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-  },
-  devServer: {
-    historyApiFallback: true,
-    port: "3030",
-    hot: true,
-    open: false,
   },
   module: {
     rules: [
@@ -40,7 +32,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "index.html",
     }),
-    new Dotenv(),
   ],
   resolve: {
     extensions: [".js", ".ts", ".tsx"],
