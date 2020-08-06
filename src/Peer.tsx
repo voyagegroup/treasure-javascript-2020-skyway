@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Peer, { MediaConnection } from "skyway-js";
+import Peer from "skyway-js";
 
 const peer = new Peer({
   key: "1212399c-448f-4135-89d3-76deff99795a",
@@ -30,12 +30,12 @@ export const Video: React.FCX = ({ className }) => {
 
   // 相手からの発信
   peer.on("call", (call) => {
-    // 相手に自分のメディアストリームを送りつける！
-    call.answer(localVideo.current.srcObject);
-    // 相手のメディアストリームを自分のremoteVideoに表示する
-    call.on("stream", (stream) => {
-      remoteVideo.current.srcObject = stream;
-    });
+    if (confirm("相手が見つかりました！\n接続しますか？")) {
+      // 相手に自分のメディアストリームを送りつける！
+      call.answer(localVideo.current.srcObject);
+      // 相手のメディアストリームを自分のremoteVideoに表示する
+      setEventListener(call);
+    }
   });
 
   const setEventListener = (mediaConnection: any) => {
@@ -69,7 +69,6 @@ export const Video: React.FCX = ({ className }) => {
       <button onClick={disconnectHandler}>切断</button>
       <video width="400px" autoPlay muted={true} ref={localVideo}></video>
       <button onClick={videoMuteHandler}>Camera {camera ? "ON" : "OFF"}</button>
-      <button></button>
       <video width="400px" autoPlay muted={true} ref={remoteVideo}></video>
     </section>
   );
