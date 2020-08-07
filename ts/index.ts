@@ -1,4 +1,4 @@
-import Peer from "skyway-js";
+var Peer = require("skyway-js");
 
 (async function(){
     let localStream: MediaStream;
