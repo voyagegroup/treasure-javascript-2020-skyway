@@ -4,7 +4,7 @@ import Peer, { MediaConnection } from "skyway-js";
 import { VideoStream } from "./components/Video";
 
 const peer = new Peer({
-  key: process.env.SKYWAY_API_KEY!,
+  key: process.env["SKYWAY_API_KEY"]!,
 });
 
 export const Main: React.FCX = ({ className }) => {
