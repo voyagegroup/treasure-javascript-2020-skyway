@@ -3,11 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Treasure Frontend 2020 Skyway</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"></script>
+  <link rel="stylesheet" href="styles/style.css">
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <title>Treasure Frontend 2020 Skyway</title>
 </head>
 <body>
-    <h1>Hello Treasure!!!</h1>
-    <script src="./index.js"></script>
+    <script src="./bundle.js"></script>
+    <h1 class="title">Treasure Voice</h1>
+    <div class="videos">
+      <video id="my-video" width="600px" autoplay muted playsinline></video>
+      <video id="their-video" width="600px" autoplay muted playsinline></video>
+    </div>
+    <div>
+    <div class="content">
+      YourID:<p id="my-id"></p>
+      <textarea id="their-id"></textarea>
+      <ul>
+        <li>
+          <label>
+            <input type="button" id="js-connect-trigger" name="">
+              <div class="icon-box">
+                <i class="fas fa-phone" id="phone-call"></i>
+              </div>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="button" id="js-close-trigger" name="">
+              <div class="icon-box">
+                <i class="fas fa-phone-slash" id="phone-close"></i>
+              </div>
+          </label>
+        </li>
+      </ul>
+    
+      <div>
+        <pre class="messages" id="js-messages"></pre>
+        <input class="textbox" id="js-local-text"　type="text" name="q" placeholder="メッセージを送信" onEnter="send()" autocomplete="off" maxlength="60">
+        <ul>
+          <li>
+            <label>
+              <input type="button" id="js-send-trigger" name="">
+                <div class="icon-box">
+                  <i class="fas fa-paper-plane"></i>
+                </div>
+              </input>
+            </label>
+          </li>
+        </ul>
+      </div> 
+    </div>
 </body>
 </html>

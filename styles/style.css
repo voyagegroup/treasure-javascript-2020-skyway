@@ -1,0 +1,116 @@
+.title {
+  padding: 40px;
+  font-weight: bold;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #ebf5fc;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#my-video{
+  background-color: black;
+}
+
+#their-video{
+  background-color: black;
+}
+
+.call-close-button {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.content {
+  /* float: left; */
+}
+
+ul {
+    /* position: relative; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    padding: 20px;
+    /* width: 240px; */
+    /* box-shadow: -2px -2px 5px white, 3px 3px 5px rgba(0, 0, 0, 0.1); */
+  }
+
+ul li {
+  position: relative;
+  list-style: none;
+  text-align: center;
+  float: left;
+  margin: 15px;
+}
+
+ul li label {
+  position: relative;
+  cursor: pointer;
+}
+
+ul li label input[type=button] {
+  position: absolute;
+  opacity: 0;
+}
+
+ul li label :active ~ .icon-box {
+  box-shadow: inset -2px -2px 5px white, inset 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+ul li label :active ~ .icon-box .fas {
+  transform: scale(0.95);
+}
+
+ul li label .icon-box {
+  width: 60px;
+  height: 60px;
+  background: #ebf5fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -2px -2px 5px white, 3px 3px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+ul li label .icon-box .fas {
+  font-size: 30px;
+  color: #6a9bd8;
+}
+  
+#phone-call{
+  color: #66cdaa;
+}
+
+#phone-close{
+  color: red;
+}
+
+.textbox {
+  margin-top: 50px;
+  /* font-family: cursive; */
+  border: 1px solid #acacac;
+  color: black;
+  opacity: .7;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  width: 400px;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  font-size: 16px;
+  outline: none;
+  background-color: #f5f5f5;
+}
+
+.textbox:focus {
+  width: 500px;
+  outline: none;
+}

@@ -1,0 +1,30 @@
+{
+  "name": "treasure-javascript-2020-skyway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "tsc": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ogijun2018/treasure-javascript-2020-skyway.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ogijun2018/treasure-javascript-2020-skyway/issues"
+  },
+  "homepage": "https://github.com/Ogijun2018/treasure-javascript-2020-skyway#readme",
+  "devDependencies": {
+    "ts-loader": "^8.0.2",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "dependencies": {
+    "skyway-js": "^3.0.2"
+  }
+}
