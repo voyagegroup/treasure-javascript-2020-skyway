@@ -1,5 +1,5 @@
 import * as React from "react";
 
 declare module "react" {
-  type FCX<P = {}> = FunctionComponent<P & { className?: string }>;
+  type FCX<P = unknown> = FunctionComponent<P & { className?: string }>;
 }

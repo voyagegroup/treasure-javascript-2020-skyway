@@ -7,7 +7,7 @@ const peer = new Peer({
   key: "1212399c-448f-4135-89d3-76deff99795a",
 });
 
-export const Main: React.FCX = ({ className }) => {
+export const Main: React.FCX = () => {
   const [peerId, setPeerId] = useState("");
   const [callId, setCallId] = useState("");
   const [myStream, setMyStream] = useState<MediaStream | null>(null);
@@ -26,8 +26,9 @@ export const Main: React.FCX = ({ className }) => {
         }
       });
     }
-  }, [myStream, peerId]);
+  }, [myStream]);
 
+  // これは最初の1回だけで良い！レンダリングごとに毎回呼ばせない！
   const getMediaStream = async () => {
     const localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
     setMyStream(localStream);
@@ -43,8 +44,10 @@ export const Main: React.FCX = ({ className }) => {
   };
 
   const connectHandler = () => {
-    const mediaConnection = peer.call(callId, myStream!);
-    setEventListener(mediaConnection, setTheirStream);
+    if (myStream != null) {
+      const mediaConnection = peer.call(callId, myStream);
+      setEventListener(mediaConnection, setTheirStream);
+    }
   };
 
   const disconnectHandler = () => {
