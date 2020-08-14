@@ -8,6 +8,7 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
   ],
+  "eslint.workingDirectories": ["./src"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {

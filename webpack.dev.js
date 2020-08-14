@@ -10,5 +10,4 @@ module.exports = merge(common, {
     hot: true,
     open: false,
   },
-  plugins: [new Dotenv()],
 });
